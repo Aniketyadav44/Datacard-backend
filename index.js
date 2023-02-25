@@ -1,11 +1,13 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 import requestRouter from './routes/requestRoutes.js'
 import uploadRouter from './routes/uploadRoutes.js'
 import ipfs from './ipfs.js'
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
