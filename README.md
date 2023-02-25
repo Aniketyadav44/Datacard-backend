@@ -64,7 +64,7 @@ Headers:
 ```sh
 { x-api-key : <api-key> }
 ```
-Body form-data:
+Body:
 ```sh
 {
     "docUID" : "UID of the document from firebase",
@@ -82,7 +82,7 @@ Headers:
 ```sh
 { x-api-key : <api-key> }
 ```
-Body form-data:
+Body:
 ```sh
 {
     "dataCardUID" : "UID of the datacard from firebase",
@@ -101,7 +101,7 @@ Headers:
 ```sh
 { x-api-key : <api-key> }
 ```
-Body form-data:
+Body:
 ```sh
 {
     "encrypted" : "encrypted CID",
