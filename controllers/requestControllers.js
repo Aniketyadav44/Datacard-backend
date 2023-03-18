@@ -36,8 +36,7 @@ export const requestFile = async (req, res, next) => {
                         const key = crypto.scryptSync(secretKey, 'salt', 24)
                         const decipher = crypto.createDecipheriv(algorithm, key, buff)
                         var decrypted = decipher.update(data.data()["encryptedCID"], 'hex', 'utf8') + decipher.final('utf8')
-                        var link = "https://ipfs.io/ipfs/"+decrypted
-                        return res.send({"name":data.data()["name"], "type":data.data()["type"],"description":data.data()["description"],"link":link})
+                        return res.send({"uid":data.data()["uid"],"decryptedCID":decrypted})
                     }catch(err){
                         if(err.code=="ERR_OSSL_BAD_DECRYPT")
                         return res.status(401).send({"error":"INVALID_KEY"})
@@ -86,7 +85,7 @@ export const requestDataCard = async (req, res, next) => {
                             const decipher = crypto.createDecipheriv(algorithm, key, buff)
                             var decrypted = decipher.update(fileDataObj["encryptedCID"], 'hex', 'utf8') + decipher.final('utf8')
                             var decLink = "https://ipfs.io/ipfs/"+decrypted
-                            files.push({"name":fileDataObj["name"], "type":fileDataObj["type"],"description":fileDataObj["description"],"link":decLink})
+                            files.push({"uid":fileDataObj["uid"],"decryptedCID":decrypted})
                         }
                         return res.send({"name":data.data()["name"],"description":data.data()["description"],"files":files})
                     }catch(err){
