@@ -87,7 +87,7 @@ export const requestDataCard = async (req, res, next) => {
                             var decLink = "https://ipfs.io/ipfs/"+decrypted
                             files.push({"uid":fileDataObj["uid"],"decryptedCID":decrypted})
                         }
-                        return res.send({"name":data.data()["name"],"description":data.data()["description"],"files":files})
+                        return res.send({"uid":data.data()["uid"], "files":files})
                     }catch(err){
                         if(err.code=="ERR_OSSL_BAD_DECRYPT")
                         return res.status(401).send({"error":"INVALID_KEY"})
